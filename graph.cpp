@@ -2,29 +2,27 @@
 
 extern string getTillChar(string &, char);
 
-graph::graph()
-{
-}
+graph::graph(){}
 
 void graph::readSites()
 {
-    ifstream inWK, inWIC;
+    ifstream inWK, inWIC; // inputs from keywords.csv and impressions.csv
 
     inWIC.open("impressions.csv");
 
-    string temp;
+    string temp; // to store temp strings
 
-    pair<string, pair<int, int>> wic;
+    pair<string, pair<int, int>> wic; // to store temp urls with their impressions and clicks
 
-    vector<pair<string, pair<int, int>>> WIC;
+    vector<pair<string, pair<int, int>>> WIC; // to store urls with their impressions and clicks
 
     while (!inWIC.eof())
     {
         getline(inWIC >> ws, temp);
 
-        wic.first = getTillChar(temp, ',');
-        wic.second.first = stoi(getTillChar(temp, ','));
-        wic.second.second = stoi(getTillChar(temp, ','));
+        wic.first = getTillChar(temp, ','); // url
+        wic.second.first = stoi(getTillChar(temp, ',')); // impressions
+        wic.second.second = stoi(getTillChar(temp, ',')); // clicks
         WIC.push_back(wic);
     }
     inWIC.close();
