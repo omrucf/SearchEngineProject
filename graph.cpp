@@ -34,7 +34,7 @@ void graph::readImpressions() // O(n)
     inWIC.close();
 }
 
-void graph::readKeywords() // O(n^2)
+void graph::readKeywords() // O(n)
 {
     ifstream inWK; // inputs from keywords.csv and impressions.csv
 
@@ -43,6 +43,8 @@ void graph::readKeywords() // O(n^2)
     inWK.open("keywords.csv");
 
     string tempURL;
+
+    int i = 0;
 
     while (!inWK.eof()) // n times
     {
@@ -55,9 +57,7 @@ void graph::readKeywords() // O(n^2)
         while (!temp.empty())
             tempKeywords.push_back(getTillChar(temp, ','));
 
-        for (int i = 0; i < sites.size(); i++) // n times
-            if (sites[i]->getURL() == tempURL)
-                sites[i]->setKeywords(tempKeywords);
+        sites[i++]->setKeywords(tempKeywords);
     }
     inWK.close();
 }
@@ -94,7 +94,7 @@ void graph::readKeywords() // O(n^2)
 void graph::readSites()
 {
     readImpressions(); // O(n)
-    readKeywords(); // O(n^2)
+    readKeywords();    // O(n)
     // readWebgraph(); // O()
 }
 
