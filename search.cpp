@@ -7,10 +7,10 @@ Search::Search()
     // table = test.getTable();
 }
 
-Search::Search(vector<webpage *> sites)
-{
-    this->sites = sites;
-}
+// Search::Search(vector<webpage *> sites)
+// {
+//     this->sites = sites;
+// }
 
 vector<string> Search::ANDSearch(string input)
 {
@@ -27,8 +27,7 @@ vector<string> Search::ANDSearch(string input)
             temp = getTillChar(input, ' ');
         while (temp == "AND");
 
-        if (temp[0] == '"' && temp[temp.size() - 1] == '"')
-            temp = temp.substr(1, temp.size() - 2);
+        temp.erase(remove(temp.begin(), temp.end(), '"'), temp.end());
 
         if (temp[0] == ' ')
             temp = temp.substr(1, temp.size() - 1);
@@ -86,8 +85,7 @@ vector<string> Search::ORSearch(string input)
             temp = getTillChar(input, ' ');
         while (temp == "AND");
 
-        if (temp[0] == '"' && temp[temp.size() - 1] == '"')
-            temp = temp.substr(1, temp.size() - 2);
+        temp.erase(remove(temp.begin(), temp.end(), '"'), temp.end());
 
         if (temp[0] == ' ')
             temp = temp.substr(1, temp.size() - 1);
@@ -112,12 +110,12 @@ vector<string> Search::ORSearch(string input)
 
         for (int i = 0; i < KWs.size(); i++)
         {
-            if(keys.find(KWs[i]) != string::npos)
+            if (keys.find(KWs[i]) != string::npos)
                 Flag = true;
         }
 
-        if(Flag)
-            if(results.find(URL) == string::npos)
+        if (Flag)
+            if (results.find(URL) == string::npos)
                 results += URL + " ";
     }
 

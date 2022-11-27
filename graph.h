@@ -10,8 +10,10 @@ class graph
 
     graph();
 
+    void readImpressions();
+    void readKeywords();
+    void readWebgraph();
     void readSites();
-
     void Print();
 
     vector<webpage *> getSites();

@@ -1,14 +1,23 @@
 
 #include "screen.h"
+// #include "graph.h"
 
 void clear();
 string getTillChar(string &, char);
 
 int main()
 {
-    screen SS;
+    // screen SS;
 
-    SS.startingScreen();
+    // SS.startingScreen();
+
+    graph test;
+
+    test.readSites();
+
+    test.Print();
+
+
     
    return 0;
 }

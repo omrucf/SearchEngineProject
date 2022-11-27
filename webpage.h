@@ -13,23 +13,29 @@ class webpage
     vector<string> keywords;
 
     vector<webpage *> hyperlinks;
-
     vector<webpage *> inbound;
 
     int PR;
     int ctr;
-    int impressions, clicks;
+    int impressions;
+    int clicks;
+    int score;
 
     double pr;
 
     public:
 
     webpage();
-    webpage(string, vector<string>, int, int);
+    // webpage(string, vector<string>, int, int);
 
+    void setURL(string);
+    void setKeywords(vector<string>);
+    void setImpressions(int);
+    void setClicks(int);
     void setPR(int);
     void setpr(double);
     void setCTR(int);
+    void setScore(int);
     void setHyperlinks(vector<webpage *>);
     void setInbound(vector<webpage *>);
     void print();
