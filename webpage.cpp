@@ -27,11 +27,6 @@ void webpage::setPR(int PR)
     this->PR = PR;
 }
 
-void webpage::setpr(double pr)
-{
-    this->pr = pr;
-}
-
 void webpage::setCTR(int ctr)
 {
     this->ctr = ctr;
@@ -87,10 +82,6 @@ vector<webpage *> webpage::getInbound()
     return this->inbound;
 }
 
-int webpage::getPR()
-{
-    return PR;
-}
 
 int webpage::getCTR()
 {
@@ -105,9 +96,4 @@ int webpage::getImpressions()
 int webpage::getClicks()
 {
     return this->clicks;
-}
-
-double webpage::getPr()
-{
-    return this->pr;
 }

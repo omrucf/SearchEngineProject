@@ -47,7 +47,7 @@ void graph::readKeywords() // O(n^2)
     while (!inWK.eof()) // n times
     {
         vector<string> tempKeywords(0);
-        
+
         getline(inWK >> ws, temp);
 
         tempURL = getTillChar(temp, ',');
@@ -56,10 +56,8 @@ void graph::readKeywords() // O(n^2)
             tempKeywords.push_back(getTillChar(temp, ','));
 
         for (int i = 0; i < sites.size(); i++) // n times
-        {
             if (sites[i]->getURL() == tempURL)
                 sites[i]->setKeywords(tempKeywords);
-        }
     }
     inWK.close();
 }
