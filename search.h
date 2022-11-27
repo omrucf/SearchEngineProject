@@ -18,7 +18,6 @@ class Search
 
 public:
     Search();
-    // Search(vector<webpage *>);
 
     vector<string> ANDSearch(string);
     vector<string> ORSearch(string);

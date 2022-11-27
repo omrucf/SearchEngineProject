@@ -1,16 +1,6 @@
 #include "search.h"
 
-Search::Search()
-{
-    // hashtable test;
-
-    // table = test.getTable();
-}
-
-// Search::Search(vector<webpage *> sites)
-// {
-//     this->sites = sites;
-// }
+Search::Search(){}
 
 vector<string> Search::ANDSearch(string input)
 {

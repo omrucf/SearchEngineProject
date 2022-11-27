@@ -2,17 +2,8 @@
 
 webpage::webpage(){}
 
-// webpage::webpage(string URL, vector<string> keywords, int impressions, int clicks)
-// {
-//     this->URL = URL;
-//     this->keywords = keywords;
-//     this->impressions = impressions;
-//     this->clicks = clicks;
-// }
-
 void webpage::setURL(string URL)
 {
-    cout << "URL = " << URL << endl;
     this->URL = URL;
 }
 
@@ -23,37 +14,31 @@ void webpage::setKeywords(vector<string> keywords)
 
 void webpage::setImpressions(int impressions)
 {
-    cout << "impressions = " << impressions << endl;
     this->impressions = impressions;
 }
 
 void webpage::setClicks(int clicks)
 {
-    cout << "clicks = " << clicks << endl;
     this->clicks = clicks;
 }
 
 void webpage::setPR(int PR)
 {
-    cout << "PR = " << PR << endl;
     this->PR = PR;
 }
 
 void webpage::setpr(double pr)
 {
-    cout << "pr = " << pr << endl;
     this->pr = pr;
 }
 
 void webpage::setCTR(int ctr)
 {
-    cout << "ctr = " << ctr << endl;
     this->ctr = ctr;
 }
 
 void webpage::setScore(int score)
 {
-    cout << "score = " << score << endl;
     this->score = score;
 }
 
