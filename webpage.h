@@ -15,13 +15,12 @@ class webpage
     vector<webpage *> hyperlinks;
     vector<webpage *> inbound;
 
-    int PR;
-    int ctr;
     int impressions;
     int clicks;
     int score;
 
-    double pr;
+    double PR;
+    double ctr;
 
     public:
 
@@ -47,12 +46,11 @@ class webpage
     vector<webpage *> getHyperlinks();
     vector<webpage *> getInbound();
 
-    int getPR();
     int getCTR();
     int getImpressions();
     int getClicks();
 
-    double getPr();
+    double getPR();
 };
 
 

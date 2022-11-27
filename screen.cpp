@@ -7,8 +7,6 @@ screen::screen()
     emptyString[1] = ' ';
     emptyString[2] = '"';
 
-    g.readSites();
-
     s.setSites(g.getSites());
 }
 
@@ -39,7 +37,11 @@ void screen::startingScreen()
         clear();
 
         if (choice != '1' && choice != '2' && choice != '0')
+        {
             std::cout << "*INVALID INPUT*\n";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
         else if (choice == '1')
         {
             std::cout << "\nSearch: ";
@@ -87,7 +89,7 @@ void screen::startingScreen()
 
                     cin >> choicee;
 
-                    if(choicee != 1)
+                    if (choicee != 1)
                         choice = choicee - 1;
 
                     clear();

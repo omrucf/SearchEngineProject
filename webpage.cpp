@@ -61,7 +61,10 @@ void webpage::print()
         cout << "\t" << keywords[i] << endl;
 
     cout << "Impressions:\n\t" << impressions << endl
-         << "Clicks:\n\t" << clicks << endl;
+         << "Clicks:\n\t" << clicks << endl
+         << "CTR:\n\t" << ctr << endl
+         << "PR:\n\t" << PR << endl
+         << "Score:\n\t" << score << endl;
 }
 
 string webpage::getURL()

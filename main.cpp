@@ -7,15 +7,13 @@ string getTillChar(string &, char);
 
 int main()
 {
-    screen SS;
+    // screen SS;
 
-    SS.startingScreen();
+    // SS.startingScreen();
 
-    // graph test;
+    graph test;
 
-    // test.readSites();
-
-    // test.Print();
+    test.Print();
 
 
     
