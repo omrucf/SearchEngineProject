@@ -99,7 +99,13 @@ void screen::startingScreen()
                 else if (i == output.size() + 2)
                     choice = '2';
                 else
+                {
+                    choice = '0';
                     cout << "invlaid input!\nplease try again later!\n";
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
+
             } while (choicee == '1');
         }
 

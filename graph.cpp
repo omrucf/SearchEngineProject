@@ -59,39 +59,56 @@ void graph::readKeywords() // O(n)
 
         sites[i++]->setKeywords(tempKeywords);
     }
+
     inWK.close();
 }
 
-// void graph::readWebgraph() //
-// {
-//     ifstream inWH; // inputs from keywords.csv and impressions.csv
+void graph::readWebgraph() // O(n^2)
+{
+    ifstream inWH; // inputs from keywords.csv and impressions.csv
 
-//     string temp; // to store temp strings
+    string temp; // to store temp strings
 
-//     inWH.open("webgraph.csv");
+    inWH.open("webgraph.csv");
 
-//     string tempURL;
+    string tempURL;
 
-//     while (!inWH.eof()) // n times
-//     {
-//         vector<
+    int i = 0;
 
-//         getline(inWH >> ws, temp);
+    while (!inWH.eof()) // n times
+    {
+        string tempHyper;
 
-//         tempURL = getTillChar(temp, ',');
+        vector<webpage *> tempHypers;
 
-//         while (!temp.empty())
-//             tempKeywords.push_back(getTillChar(temp, ','));
+        getline(inWH >> ws, temp);
 
-//     }
-//     inWH.close();
-// }
+        tempURL = getTillChar(temp, ',');
+
+        while (!temp.empty())
+        {
+            tempHyper = getTillChar(temp, ',');
+            for(int j = 0; j < sites.size(); j++) // n times
+            {
+                if(sites[j]->getURL() == tempHyper)
+                {
+                    tempHypers.push_back(sites[j]);
+                    sites[j]->pushInbound(sites[i]);
+                }
+            }
+        }
+
+        sites[i++]->setHyperlinks(tempHypers);
+    }
+
+    inWH.close();
+}
 
 void graph::readSites()
 {
     readImpressions(); // O(n)
     readKeywords();    // O(n)
-    // readWebgraph(); // O()
+    readWebgraph(); // O(n^2)
 }
 
 void graph::Print()

@@ -35,7 +35,7 @@ class webpage
     void setCTR(double);
     void setScore(int);
     void setHyperlinks(vector<webpage *>);
-    void setInbound(vector<webpage *>);
+    void pushInbound(webpage *);
     void print();
     void printAdvanced();
 

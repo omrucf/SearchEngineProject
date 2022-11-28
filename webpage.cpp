@@ -1,6 +1,6 @@
 #include "webpage.h"
 
-webpage::webpage(){}
+webpage::webpage() {}
 
 void webpage::setURL(string URL)
 {
@@ -42,9 +42,9 @@ void webpage::setHyperlinks(vector<webpage *> hyperlinks)
     this->hyperlinks = hyperlinks;
 }
 
-void webpage::setInbound(vector<webpage *> inbound)
+void webpage::pushInbound(webpage *inbound)
 {
-    this->inbound = inbound;
+    this->inbound.push_back(inbound);
 }
 
 void webpage::print()
@@ -69,6 +69,14 @@ void webpage::printAdvanced()
          << "CTR:\n\t" << ctr << endl
          << "PR:\n\t" << PR << endl
          << "Score:\n\t" << score << endl;
+
+    cout << "Hyperlinks:\n";
+    for (int i = 0; i < hyperlinks.size(); i++)
+        cout << "\t" << hyperlinks[i]->getURL() << endl;
+
+    cout << "Inbound:\n";
+    for (int i = 0; i < inbound.size(); i++)
+        cout << "\t" << inbound[i]->getURL() << endl;
 }
 
 string webpage::getURL()
@@ -90,7 +98,6 @@ vector<webpage *> webpage::getInbound()
 {
     return this->inbound;
 }
-
 
 int webpage::getCTR()
 {
