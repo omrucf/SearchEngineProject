@@ -127,6 +127,8 @@ void graph::PrintAdvanced()
     {
         sites[i]->printAdvanced();
 
+        cout << "=============================================";
+
         cout << endl;
     }
 }
