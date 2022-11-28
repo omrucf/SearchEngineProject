@@ -19,8 +19,8 @@ class Search
 public:
     Search();
 
-    vector<string> ANDSearch(string);
-    vector<string> ORSearch(string);
+    vector<webpage *> ANDSearch(string);
+    vector<webpage *> ORSearch(string);
 
     void setSites(vector<webpage *>);
 

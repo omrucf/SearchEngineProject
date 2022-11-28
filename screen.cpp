@@ -14,7 +14,7 @@ void screen::startingScreen()
 {
     string keywords;
 
-    vector<string> output;
+    vector<webpage *> output;
 
     char choice;
     char choicee;
@@ -66,6 +66,14 @@ void screen::startingScreen()
                 output = s.ORSearch(keywords);
             }
 
+            // std::sort(output.begin(),output.end());
+            std::sort(output.begin(),
+          output.end(),
+          [](webpage* lhs, webpage* rhs)
+{
+    return lhs->getScore() > rhs->getScore();
+});
+
             do
             {
                 choicee = 0;
@@ -73,7 +81,11 @@ void screen::startingScreen()
                 cout << "select any website you want by typing its number: " << endl;
 
                 for (int j = 0; j < output.size(); j++)
-                    cout << j + 1 << ". " << output[j] << endl;
+                {
+                    output[j]->setImpressions(output[j]->getImpressions() + 1);
+
+                    cout << j + 1 << ". " << output[j]->getURL() << endl;
+                }
 
                 cout << "or type:\n(" << output.size() + 1 << ") New search\n(" << output.size() + 2 << ") Exit" << endl;
 
@@ -83,7 +95,10 @@ void screen::startingScreen()
                 {
                     choicee = '0';
                     clear();
-                    cout << "You are now viewing " << output[i - 1] << " !\n\n";
+                    cout << "You are now viewing " << output[i - 1]->getURL() << " !\n";
+
+                    output[i - 1]->print();
+                    output[i - 1]->setClicks(output[i - 1]->getClicks() + 1);
 
                     cout << "Would you like to :\n1. Back to search results\n2. New search\n3. Exit\n\n";
 

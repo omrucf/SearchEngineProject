@@ -32,7 +32,7 @@ void webpage::setCTR(double ctr)
     this->ctr = ctr;
 }
 
-void webpage::setScore(int score)
+void webpage::setScore(double score)
 {
     this->score = score;
 }
@@ -99,11 +99,6 @@ vector<webpage *> webpage::getInbound()
     return this->inbound;
 }
 
-int webpage::getCTR()
-{
-    return this->ctr;
-}
-
 int webpage::getImpressions()
 {
     return this->impressions;
@@ -112,4 +107,19 @@ int webpage::getImpressions()
 int webpage::getClicks()
 {
     return this->clicks;
+}
+
+double webpage::getScore()
+{
+    return this->score;
+}
+
+double webpage::getCTR()
+{
+    return this->ctr;
+}
+
+double webpage::getPR()
+{
+    return this->PR;
 }

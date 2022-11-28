@@ -9,13 +9,20 @@ class graph
     public:
 
     graph();
+    ~graph();
 
     void readImpressions();
     void readKeywords();
     void readWebgraph();
     void readSites();
+    void outImpressions();
+    void calculatePR();
+    void calculateCTR();
+    void calculateScore();
     void Print();
     void PrintAdvanced();
+
+    void checkPRs();
 
     vector<webpage *> getSites();
 

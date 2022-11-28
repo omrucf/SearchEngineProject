@@ -7,13 +7,19 @@ string getTillChar(string &, char);
 
 int main()
 {
-    // screen SS;
+    screen SS;
 
-    // SS.startingScreen();
+    SS.startingScreen();
 
-    graph test;
+    // graph test;
 
-    test.PrintAdvanced();
+    // test.PrintAdvanced();
+
+    // cout << endl;
+
+    // test.checkPRs();
+
+    // test.calculatePR();
 
 
     

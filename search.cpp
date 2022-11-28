@@ -2,12 +2,12 @@
 
 Search::Search(){}
 
-vector<string> Search::ANDSearch(string input)
+vector<webpage *> Search::ANDSearch(string input)
 {
     string results(""), urls;
     vector<string> URLs;
     vector<string> KWs;
-    vector<string> res;
+    vector<webpage *> res;
 
     while (!input.empty())
     {
@@ -48,24 +48,24 @@ vector<string> Search::ANDSearch(string input)
 
         if (Flag)
             if (results.find(URL) == string::npos)
+            {
                 results += URL + " ";
+                res.push_back(sites[i]);
+            }
     }
 
     if (results.empty())
         cout << "no results found!!\n";
-    else
-        while (!results.empty())
-            res.push_back(getTillChar(results, ' '));
 
     return res;
 }
 
-vector<string> Search::ORSearch(string input)
+vector<webpage *> Search::ORSearch(string input)
 {
     string results(""), urls;
     vector<string> URLs;
     vector<string> KWs;
-    vector<string> res;
+    vector<webpage *> res;
 
     while (!input.empty())
     {
@@ -106,14 +106,14 @@ vector<string> Search::ORSearch(string input)
 
         if (Flag)
             if (results.find(URL) == string::npos)
+            {
                 results += URL + " ";
+                res.push_back(sites[i]);
+            }
     }
 
     if (results.empty())
         cout << "no results found!!\n";
-    else
-        while (!results.empty())
-            res.push_back(getTillChar(results, ' '));
 
     return res;
 }

@@ -17,8 +17,8 @@ class webpage
 
     int impressions;
     int clicks;
-    int score;
 
+    double score;
     double PR;
     double ctr;
 
@@ -33,7 +33,7 @@ class webpage
     void setClicks(int);
     void setPR(double);
     void setCTR(double);
-    void setScore(int);
+    void setScore(double);
     void setHyperlinks(vector<webpage *>);
     void pushInbound(webpage *);
     void print();
@@ -46,11 +46,21 @@ class webpage
     vector<webpage *> getHyperlinks();
     vector<webpage *> getInbound();
 
-    int getCTR();
     int getImpressions();
     int getClicks();
 
+    double getScore();
+    double getCTR();
     double getPR();
+
+    bool operator<(double score)
+    {
+        return this->score < score;
+    }
+    bool operator>(double score)
+    {
+        return this->score > score;
+    }
 };
 
 
