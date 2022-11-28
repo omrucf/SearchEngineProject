@@ -22,12 +22,12 @@ void webpage::setClicks(int clicks)
     this->clicks = clicks;
 }
 
-void webpage::setPR(int PR)
+void webpage::setPR(double PR)
 {
     this->PR = PR;
 }
 
-void webpage::setCTR(int ctr)
+void webpage::setCTR(double ctr)
 {
     this->ctr = ctr;
 }
@@ -48,6 +48,15 @@ void webpage::setInbound(vector<webpage *> inbound)
 }
 
 void webpage::print()
+{
+    cout << "URL:\n\t" << URL << endl
+         << "Keywords:\n";
+
+    for (int i = 0; i < keywords.size(); i++)
+        cout << "\t" << keywords[i] << endl;
+}
+
+void webpage::printAdvanced()
 {
     cout << "URL:\n\t" << URL << endl
          << "Keywords:\n";

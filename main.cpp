@@ -13,7 +13,7 @@ int main()
 
     graph test;
 
-    test.Print();
+    test.PrintAdvanced();
 
 
     

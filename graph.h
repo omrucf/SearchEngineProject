@@ -15,6 +15,7 @@ class graph
     void readWebgraph();
     void readSites();
     void Print();
+    void PrintAdvanced();
 
     vector<webpage *> getSites();
 

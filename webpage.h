@@ -31,13 +31,13 @@ class webpage
     void setKeywords(vector<string>);
     void setImpressions(int);
     void setClicks(int);
-    void setPR(int);
-    void setpr(double);
-    void setCTR(int);
+    void setPR(double);
+    void setCTR(double);
     void setScore(int);
     void setHyperlinks(vector<webpage *>);
     void setInbound(vector<webpage *>);
     void print();
+    void printAdvanced();
 
     string getURL();
     
