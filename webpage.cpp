@@ -127,13 +127,17 @@ double webpage::getPR()
 
 void webpage::calculateScore()
 {
-    // double PR = 1 / sites.size();
-
+        calculateCTR();
+        
         double tempScore = 
         (0.4 * PR) + 
         ((1 - (0.1 * impressions / (1 + (0.1 * impressions)))) * PR
         + ((0.1 * impressions / (1 + (0.1 * impressions)))) * ctr) * 0.6;
 
-        cout << "tempScore: " << tempScore << endl;
         setScore(tempScore);
+}
+
+void webpage::calculateCTR()
+{
+    setCTR((double(clicks) / double(impressions)));
 }

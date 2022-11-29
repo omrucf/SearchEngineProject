@@ -39,6 +39,7 @@ class webpage
     void print();
     void printAdvanced();
     void calculateScore();
+    void calculateCTR();
 
     string getURL();
     

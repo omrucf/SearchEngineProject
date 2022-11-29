@@ -7,8 +7,6 @@ graph::graph()
     readSites();
 
     calculatePR();
-    calculateCTR();
-    // calculateScore();
 }
 
 graph::~graph()
@@ -72,7 +70,7 @@ void graph::readKeywords() // O(n)
     inWK.close();
 }
 
-void graph::readWebgraph() // O(n^2)
+void graph::readWebgraph() // O(n)
 {
     ifstream inWH; // inputs from keywords.csv and impressions.csv
 
@@ -93,31 +91,28 @@ void graph::readWebgraph() // O(n^2)
         getline(inWH >> ws, temp);
 
         tempURL = getTillChar(temp, ',');
+        int mainI = stoi(getTillChar(temp, ','));
 
         while (!temp.empty())
         {
             tempHyper = getTillChar(temp, ',');
-            for (int j = 0; j < sites.size(); j++) // n times
-            {
-                if (sites[j]->getURL() == tempHyper)
-                {
-                    tempHypers.push_back(sites[j]);
-                    sites[j]->pushInbound(sites[i]);
-                }
-            }
+            int hyperI = stoi(getTillChar(temp, ','));
+
+            tempHypers.push_back(sites[hyperI]);
+            sites[hyperI]->pushInbound(sites[mainI]);
         }
 
-        sites[i++]->setHyperlinks(tempHypers);
+        sites[mainI]->setHyperlinks(tempHypers);
     }
 
     inWH.close();
 }
 
-void graph::readSites() // O(n^2)
+void graph::readSites() // O(n)
 {
     readImpressions(); // O(n)
     readKeywords();    // O(n)
-    readWebgraph();    // O(n^2)
+    readWebgraph();    // O(n)
 }
 
 void graph::outImpressions()
@@ -126,7 +121,7 @@ void graph::outImpressions()
 
     out.open("impressions.csv");
 
-    for(int i = 0; i < sites.size(); i++)
+    for (int i = 0; i < sites.size(); i++)
     {
         // cout << sites[i]->getURL() << ","
         // << sites[i]->getImpressions() << ","
@@ -135,12 +130,12 @@ void graph::outImpressions()
         // << sites[i]->getPR() << ","
         // << sites[i]->getScore() << "," << endl;
         out << sites[i]->getURL() << ","
-        << sites[i]->getImpressions() << ","
-        << sites[i]->getClicks() << ","
-        << sites[i]->getCTR() << ","
-        << sites[i]->getPR() << ","
-        << sites[i]->getScore();
-        if(i != sites.size() - 1)
+            << sites[i]->getImpressions() << ","
+            << sites[i]->getClicks() << ","
+            << sites[i]->getCTR() << ","
+            << sites[i]->getPR() << ","
+            << sites[i]->getScore();
+        if (i != sites.size() - 1)
             out << endl;
     }
 }
@@ -158,7 +153,7 @@ void graph::calculatePR() // O(mn)
         PRVec.push_back(sites[i]->getPR());
     }
 
-    for (int j = 1; j < 4; j++) // iterations 1, 2, and 3; 3 times
+    for (int j = 1; j < 100; j++) // iterations 1, 2, and 3; 3 times
     {
         for (int i = 0; i < numOfSites; i++) // n times
         {
@@ -172,20 +167,11 @@ void graph::calculatePR() // O(mn)
                 }
                 PRVec[i] = tempPR;
             }
-           
         }
         for (int i = 0; i < numOfSites; i++) // n times
         {
-                sites[i]->setPR(PRVec[i]);
+            sites[i]->setPR(PRVec[i]);
         }
-    }
-}
-
-void graph::calculateCTR()
-{
-    for(int i = 0; i < sites.size(); i++)
-    {
-        sites[i]->setCTR((double(sites[i]->getClicks()) / double(sites[i]->getImpressions())));
     }
 }
 

@@ -7,6 +7,8 @@ string getTillChar(string &, char);
 
 int main()
 {
+    clear();
+    
     screen SS;
 
     SS.startingScreen();

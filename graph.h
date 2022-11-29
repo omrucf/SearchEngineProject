@@ -17,7 +17,6 @@ class graph
     void readSites();
     void outImpressions();
     void calculatePR();
-    void calculateCTR();
     void Print();
     void PrintAdvanced();
 
