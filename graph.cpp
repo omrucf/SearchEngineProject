@@ -8,7 +8,7 @@ graph::graph()
 
     calculatePR();
     calculateCTR();
-    calculateScore();
+    // calculateScore();
 }
 
 graph::~graph()
@@ -172,16 +172,10 @@ void graph::calculatePR() // O(mn)
                 }
                 PRVec[i] = tempPR;
             }
-            // else
-            //     PRVec[i] = sites[i]->getPR();
+           
         }
         for (int i = 0; i < numOfSites; i++) // n times
         {
-            if (sites[i]->getPR() == 1 / sites.size())
-                cout << "PR: " << PRVec[i] << endl
-                     << "1 - PR: " << 1 - PRVec[i] << endl;
-            // sites[i]->setPR(1.0 - PRVec[i]);
-            else
                 sites[i]->setPR(PRVec[i]);
         }
     }
@@ -191,26 +185,7 @@ void graph::calculateCTR()
 {
     for(int i = 0; i < sites.size(); i++)
     {
-        sites[i]->setCTR((double(sites[i]->getClicks()) / double(sites[i]->getImpressions())) * double(100));
-    }
-}
-
-void graph::calculateScore()
-{
-    // double PRnorm = 1 / sites.size();
-
-    for(int i = 0; i < sites.size(); i++)
-    {
-        double PRnorm = sites[i]->getPR();
-
-        double tempScore = 
-        (0.4 * PRnorm) + 
-        (((1 - (((0.1 * sites[i]->getImpressions()) / (1 + (0.1 * sites[i]->getImpressions())) * PRnorm) + 
-        ((0.1 * sites[i]->getImpressions()) / (1 + (0.1 * sites[i]->getImpressions())) * sites[i]->getCTR()))))
-        * 0.6);
-
-        cout << "tempScore: " << tempScore << endl;
-        sites[i]->setScore(tempScore);
+        sites[i]->setCTR((double(sites[i]->getClicks()) / double(sites[i]->getImpressions())));
     }
 }
 
@@ -243,7 +218,7 @@ vector<webpage *> graph::getSites()
 
 void graph::checkPRs()
 {
-    double total = 0;
+    double total = 0.0;
     for (int i = 0; i < sites.size(); i++)
         total += sites[i]->getPR();
 

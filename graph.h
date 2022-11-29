@@ -18,7 +18,6 @@ class graph
     void outImpressions();
     void calculatePR();
     void calculateCTR();
-    void calculateScore();
     void Print();
     void PrintAdvanced();
 

@@ -38,6 +38,7 @@ class webpage
     void pushInbound(webpage *);
     void print();
     void printAdvanced();
+    void calculateScore();
 
     string getURL();
     
@@ -52,15 +53,6 @@ class webpage
     double getScore();
     double getCTR();
     double getPR();
-
-    bool operator<(double score)
-    {
-        return this->score < score;
-    }
-    bool operator>(double score)
-    {
-        return this->score > score;
-    }
 };
 
 

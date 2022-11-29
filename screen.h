@@ -17,7 +17,10 @@ class screen
 public:
     screen();
 
-    void startingScreen();    
+    void startingScreen(); 
+      
+    int resultsScreen(vector<webpage *>);
+    int webScreen(vector<webpage *>, int);
 };
 
 #endif /*SCREEN_H*/
