@@ -21,6 +21,7 @@ public:
 
     vector<webpage *> ANDSearch(string);
     vector<webpage *> ORSearch(string);
+    vector<webpage *> QuoteSearch(string);
 
     void setSites(vector<webpage *>);
 

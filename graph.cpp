@@ -153,13 +153,8 @@ void graph::calculatePR() // O(mn)
 
     while (!allmoe && j < 100)
     {
-        // double sinksSum = getSinks();
         for (int i = 0; i < numOfSites; i++) // n times
         {
-            // if (!sites[i]->getSink())
-            //     sites[i]->setPR(sites[i]->getPR() /* + sinksSum*/);
-
-            // if (sites[i]->getInbound().size() != 0)
             {
                 double tempPR = 0.0;
 
@@ -219,8 +214,6 @@ void graph::checkPRs()
     double total = 0.0;
     for (int i = 0; i < sites.size(); i++)
         total += sites[i]->getPR();
-
-    cout << "total PRs: " << total << endl;
 }
 
 double graph::getSinks()

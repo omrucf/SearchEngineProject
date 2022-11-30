@@ -7,21 +7,19 @@ string getTillChar(string &, char);
 
 int main()
 {
-    // clear();
+    clear();
 
-    cout << "============================Omar's Search Engine============================\n\n";
+    screen SS;
 
-    // screen SS;
+    SS.startingScreen();
 
-    // SS.startingScreen();
+    // graph test;
 
-    graph test;
+    // test.PrintAdvanced();
 
-    test.PrintAdvanced();
+    // cout << endl;
 
-    cout << endl;
-
-    test.checkPRs();
+    // test.checkPRs();
 
     // test.calculatePR();
 
@@ -33,6 +31,8 @@ int main()
 void clear()
 {
    system("clear");
+
+   cout << "============================Omar's Search Engine============================\n\n";
 }
 
 string getTillChar(string &word, char c)

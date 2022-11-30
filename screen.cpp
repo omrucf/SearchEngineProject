@@ -9,7 +9,7 @@ screen::screen()
 
     s.setSites(g.getSites());
 
-    g.checkPRs() ;
+    g.checkPRs();
 }
 
 void screen::startingScreen()
@@ -61,7 +61,7 @@ void screen::startingScreen()
             }
             else if (keywords[0] == '"' && keywords[keywords.size() - 1] == '"')
             {
-                output = s.ORSearch(keywords);
+                output = s.QuoteSearch(keywords);
             }
             else
             {
@@ -72,25 +72,30 @@ void screen::startingScreen()
                       output.end(),
                       [](webpage *lhs, webpage *rhs)
                       {
-                        return lhs->getScore() > rhs->getScore();
+                          return lhs->getScore() > rhs->getScore();
                       });
 
             do
             {
                 choicee = 0;
 
-                cout << "select any website you want by typing its number: " << endl;
-
-                for (int j = 0; j < output.size(); j++)
+                if (output.size() > 0)
                 {
-                    output[j]->setImpressions(output[j]->getImpressions() + 1);
+                    cout << "select any website you want by typing its number: " << endl;
 
-                    cout << j + 1 << ". " << output[j]->getURL() << endl;
+                    for (int j = 0; j < output.size(); j++)
+                    {
+                        output[j]->setImpressions(output[j]->getImpressions() + 1);
 
-                    output[j]->calculateScore();
+                        cout << j + 1 << ". " << output[j]->getURL() << endl;
+
+                        output[j]->calculateScore();
+                    }
                 }
+                else
+                    cout << "No results found!\n";
 
-                cout << "or type:\n(" << output.size() + 1 << ") New search\n(" << output.size() + 2 << ") Exit" << endl;
+                    cout << "\n" << output.size() + 1 << ". New search\n" << output.size() + 2 << ". Exit" << endl;
 
                 cin >> i;
 

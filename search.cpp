@@ -1,6 +1,6 @@
 #include "search.h"
 
-Search::Search(){}
+Search::Search() {}
 
 vector<webpage *> Search::ANDSearch(string input)
 {
@@ -53,9 +53,6 @@ vector<webpage *> Search::ANDSearch(string input)
                 res.push_back(sites[i]);
             }
     }
-
-    if (results.empty())
-        cout << "no results found!!\n";
 
     return res;
 }
@@ -112,8 +109,33 @@ vector<webpage *> Search::ORSearch(string input)
             }
     }
 
-    if (results.empty())
-        cout << "no results found!!\n";
+    return res;
+}
+
+vector<webpage *> Search::QuoteSearch(string input)
+{
+    vector<webpage *> res;
+
+    input.erase(remove(input.begin(), input.end(), '"'), input.end());
+
+    transform(input.begin(), input.end(), input.begin(), ::toupper);
+
+    for (int i = 0; i < sites.size(); i++)
+    {
+        bool Flag(false);
+
+        for (int j = 0; j < sites[i]->getKeywords().size(); j++)
+        {
+            string key(sites[i]->getKeywords()[j]);
+
+            transform(key.begin(), key.end(), key.begin(), ::toupper);
+
+            if (key == input)
+                Flag = true;
+        }
+        if(Flag)
+            res.push_back(sites[i]);
+    }
 
     return res;
 }
