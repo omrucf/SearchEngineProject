@@ -1,6 +1,6 @@
 
 #include "screen.h"
-// #include "graph.h"
+
 
 void clear();
 string getTillChar(string &, char);
@@ -12,18 +12,6 @@ int main()
     screen SS;
 
     SS.startingScreen();
-
-    // graph test;
-
-    // test.PrintAdvanced();
-
-    // cout << endl;
-
-    // test.checkPRs();
-
-    // test.calculatePR();
-
-
     
    return 0;
 }
