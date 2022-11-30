@@ -39,9 +39,9 @@ void webpage::setScore(double score)
 
 void webpage::setSink()
 {
-    if(hyperlinks.size() == 0)
+    if (hyperlinks.size() == 0)
         sink = true;
-    else    
+    else
         sink = false;
 }
 
@@ -79,12 +79,12 @@ void webpage::printAdvanced()
          << "Score:\n\t" << score << endl;
 
     cout << "Hyperlinks:\n";
-    cout <<"\tsize: " << hyperlinks.size() << "\n";
+    cout << "\tsize: " << hyperlinks.size() << "\n";
     for (int i = 0; i < hyperlinks.size(); i++)
         cout << "\t" << hyperlinks[i]->getURL() << endl;
 
     cout << "Inbound:\n";
-    cout <<"\tsize: " << inbound.size() << "\n";
+    cout << "\tsize: " << inbound.size() << "\n";
     for (int i = 0; i < inbound.size(); i++)
         cout << "\t" << inbound[i]->getURL() << endl;
 }
@@ -134,17 +134,15 @@ double webpage::getPR()
     return this->PR;
 }
 
-
 void webpage::calculateScore()
 {
-        calculateCTR();
-        
-        double tempScore = 
-        (0.4 * PR) + 
-        ((1 - (0.1 * impressions / (1 + (0.1 * impressions)))) * PR
-        + ((0.1 * impressions / (1 + (0.1 * impressions)))) * ctr) * 0.6;
+    calculateCTR();
 
-        setScore(tempScore);
+    double tempScore =
+        (0.4 * PR) +
+        ((1 - (0.1 * impressions / (1 + (0.1 * impressions)))) * PR + ((0.1 * impressions / (1 + (0.1 * impressions)))) * ctr) * 0.6;
+
+    setScore(tempScore);
 }
 
 void webpage::calculateCTR()

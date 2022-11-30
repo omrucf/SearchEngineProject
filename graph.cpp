@@ -148,7 +148,6 @@ void graph::calculatePR() // O(mn)
         sites[i]->setPR(double(1.0 / numOfSites));
 
         PRVec.push_back(sites[i]->getPR());
-
     }
 
     while (!allmoe && j < 100)
@@ -163,7 +162,7 @@ void graph::calculatePR() // O(mn)
 
                 tempPR = ((1 - 0.85) / numOfSites) + (0.85 * tempPR);
 
-                PRVec[i] = tempPR;  
+                PRVec[i] = tempPR;
             }
         }
         allmoe = true;

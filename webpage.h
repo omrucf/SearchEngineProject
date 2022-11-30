@@ -9,7 +9,7 @@ using namespace std;
 class webpage
 {
     string URL;
-    
+
     vector<string> keywords;
 
     vector<webpage *> hyperlinks;
@@ -24,8 +24,7 @@ class webpage
 
     bool sink;
 
-    public:
-
+public:
     webpage();
     // webpage(string, vector<string>, int, int);
 
@@ -45,7 +44,7 @@ class webpage
     void calculateCTR();
 
     string getURL();
-    
+
     vector<string> getKeywords();
 
     vector<webpage *> getHyperlinks();
@@ -57,9 +56,8 @@ class webpage
     double getScore();
     double getCTR();
     double getPR();
- 
+
     bool getSink();
 };
-
 
 #endif

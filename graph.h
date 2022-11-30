@@ -6,8 +6,7 @@ class graph
 {
     vector<webpage *> sites;
 
-    public:
-
+public:
     graph();
     ~graph();
 

@@ -95,7 +95,9 @@ void screen::startingScreen()
                 else
                     cout << "No results found!\n";
 
-                    cout << "\n" << output.size() + 1 << ". New search\n" << output.size() + 2 << ". Exit" << endl;
+                cout << "\n"
+                     << output.size() + 1 << ". New search\n"
+                     << output.size() + 2 << ". Exit" << endl;
 
                 cin >> i;
 

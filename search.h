@@ -24,7 +24,6 @@ public:
     vector<webpage *> QuoteSearch(string);
 
     void setSites(vector<webpage *>);
-
 };
 
 #endif /*SEARCH_H*/

@@ -133,7 +133,7 @@ vector<webpage *> Search::QuoteSearch(string input)
             if (key == input)
                 Flag = true;
         }
-        if(Flag)
+        if (Flag)
             res.push_back(sites[i]);
     }
 

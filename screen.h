@@ -14,11 +14,12 @@ class screen
     graph g;
 
     Search s;
+
 public:
     screen();
 
-    void startingScreen(); 
-      
+    void startingScreen();
+
     int resultsScreen(vector<webpage *>);
     int webScreen(vector<webpage *>, int);
 };
