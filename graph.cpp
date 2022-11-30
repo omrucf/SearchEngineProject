@@ -136,52 +136,50 @@ void graph::calculatePR() // O(mn)
 
     vector<double> PRVec;
 
-    double MOE = 0.01; // margin of error
+    double MOE = 0.000001; // margin of error
 
     int j;
 
-    vector<bool> moe (numOfSites, false); // margin of error 
+    vector<bool> moe(numOfSites, false); // margin of error
     bool allmoe = false;
 
     for (int i = 0; i < numOfSites; i++) // iteration 0; n times
     {
-        sites[i]->setPR(1.0 / numOfSites);
+        sites[i]->setPR(double(1.0 / numOfSites));
 
         PRVec.push_back(sites[i]->getPR());
+
     }
 
-    while(!allmoe && j < 100)
+    while (!allmoe && j < 100)
     {
-        double sinksSum = getSinks();
+        // double sinksSum = getSinks();
         for (int i = 0; i < numOfSites; i++) // n times
         {
-            sites[i]->setPR(sites[i]->getPR() + sinksSum);
+            // if (!sites[i]->getSink())
+            //     sites[i]->setPR(sites[i]->getPR() /* + sinksSum*/);
 
-            if (sites[i]->getInbound().size() != 0)
+            // if (sites[i]->getInbound().size() != 0)
             {
-                double tempPR = 0;
+                double tempPR = 0.0;
 
                 for (int k = 0; k < sites[i]->getInbound().size(); k++) // m times
-                    tempPR += sites[i]->getInbound()[k]->getPR() / sites[i]->getInbound()[k]->getHyperlinks().size();
-                
-                    tempPR = ((1 - 0.85) / numOfSites) + (0.85 * tempPR);
-                
-                 if(sites[i]->getImpressions().size() != 0)
-                    PRVec[i] = tempPR;
-                else
-                    PRVec[i] -= sites[i]->getPR() / numOfSites - 1;
+                    tempPR += (sites[i]->getInbound()[k]->getPR() / sites[i]->getInbound()[k]->getHyperlinks().size());
 
+                tempPR = ((1 - 0.85) / numOfSites) + (0.85 * tempPR);
+
+                PRVec[i] = tempPR;  
             }
         }
         allmoe = true;
         for (int i = 0; i < numOfSites; i++) // n times
         {
-            if(sites[i]->getPR() - PRVec[i] > MOE)
+            if (abs(sites[i]->getPR() - PRVec[i]) > MOE)
                 sites[i]->setPR(PRVec[i]);
             else
                 moe[i] = true;
 
-            if(!moe[i])
+            if (!moe[i])
                 allmoe = false;
         }
 
@@ -229,16 +227,16 @@ double graph::getSinks()
 {
     double sum = 0.0;
 
-    for(int i = 0; i < sites.size(); i++)
+    for (int i = 0; i < sites.size(); i++)
     {
         sites[i]->setSink();
-        if(sites[i]->getHyperlinks().size() == 0)
+        if (sites[i]->getHyperlinks().size() == 0)
         {
             // sites[i]->setPR(sites[i]->getPR() / sites.size());
 
             sum += sites[i]->getPR() / (sites.size() - 1);
         }
     }
-    
+
     return sum;
 }

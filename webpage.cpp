@@ -79,10 +79,12 @@ void webpage::printAdvanced()
          << "Score:\n\t" << score << endl;
 
     cout << "Hyperlinks:\n";
+    cout <<"\tsize: " << hyperlinks.size() << "\n";
     for (int i = 0; i < hyperlinks.size(); i++)
         cout << "\t" << hyperlinks[i]->getURL() << endl;
 
     cout << "Inbound:\n";
+    cout <<"\tsize: " << inbound.size() << "\n";
     for (int i = 0; i < inbound.size(); i++)
         cout << "\t" << inbound[i]->getURL() << endl;
 }

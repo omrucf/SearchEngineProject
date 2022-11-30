@@ -102,6 +102,7 @@ void screen::startingScreen()
 
                     output[i - 1]->print();
                     output[i - 1]->setClicks(output[i - 1]->getClicks() + 1);
+                    output[i - 1]->calculateScore();
 
                     cout << "Would you like to :\n1. Back to search results\n2. New search\n3. Exit\n\n";
 

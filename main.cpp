@@ -17,7 +17,7 @@ int main()
 
     graph test;
 
-    // test.PrintAdvanced();
+    test.PrintAdvanced();
 
     cout << endl;
 
