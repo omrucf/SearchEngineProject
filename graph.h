@@ -24,4 +24,5 @@ class graph
 
     vector<webpage *> getSites();
 
+    double getSinks();
 };

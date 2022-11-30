@@ -37,9 +37,17 @@ void webpage::setScore(double score)
     this->score = score;
 }
 
-void webpage::setHyperlinks(vector<webpage *> hyperlinks)
+void webpage::setSink()
 {
-    this->hyperlinks = hyperlinks;
+    if(hyperlinks.size() == 0)
+        sink = true;
+    else    
+        sink = false;
+}
+
+void webpage::pushHyperlink(webpage *hyperlink)
+{
+    this->hyperlinks.push_back(hyperlink);
 }
 
 void webpage::pushInbound(webpage *inbound)
@@ -140,4 +148,9 @@ void webpage::calculateScore()
 void webpage::calculateCTR()
 {
     setCTR((double(clicks) / double(impressions)));
+}
+
+bool webpage::getSink()
+{
+    return sink;
 }

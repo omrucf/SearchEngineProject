@@ -7,19 +7,21 @@ string getTillChar(string &, char);
 
 int main()
 {
-    clear();
-    
-    screen SS;
+    // clear();
 
-    SS.startingScreen();
+    cout << "============================Omar's Search Engine============================\n\n";
 
-    // graph test;
+    // screen SS;
+
+    // SS.startingScreen();
+
+    graph test;
 
     // test.PrintAdvanced();
 
-    // cout << endl;
+    cout << endl;
 
-    // test.checkPRs();
+    test.checkPRs();
 
     // test.calculatePR();
 

@@ -8,6 +8,8 @@ screen::screen()
     emptyString[2] = '"';
 
     s.setSites(g.getSites());
+
+    g.checkPRs() ;
 }
 
 void screen::startingScreen()
@@ -70,7 +72,7 @@ void screen::startingScreen()
                       output.end(),
                       [](webpage *lhs, webpage *rhs)
                       {
-                          return lhs->getScore() > rhs->getScore();
+                        return lhs->getScore() > rhs->getScore();
                       });
 
             do

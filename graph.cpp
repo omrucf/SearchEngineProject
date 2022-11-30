@@ -33,7 +33,7 @@ void graph::readImpressions() // O(n)
         tempPage->setClicks(stoi(getTillChar(temp, ',')));
         tempPage->setCTR(stod(getTillChar(temp, ',')));
         tempPage->setPR(stod(getTillChar(temp, ',')));
-        tempPage->setScore(stoi(getTillChar(temp, ',')));
+        tempPage->setScore(stod(getTillChar(temp, ',')));
 
         sites.push_back(tempPage);
     }
@@ -86,8 +86,6 @@ void graph::readWebgraph() // O(n)
     {
         string tempHyper;
 
-        vector<webpage *> tempHypers;
-
         getline(inWH >> ws, temp);
 
         tempURL = getTillChar(temp, ',');
@@ -98,11 +96,9 @@ void graph::readWebgraph() // O(n)
             tempHyper = getTillChar(temp, ',');
             int hyperI = stoi(getTillChar(temp, ','));
 
-            tempHypers.push_back(sites[hyperI]);
+            sites[mainI]->pushHyperlink(sites[hyperI]);
             sites[hyperI]->pushInbound(sites[mainI]);
         }
-
-        sites[mainI]->setHyperlinks(tempHypers);
     }
 
     inWH.close();
@@ -123,12 +119,6 @@ void graph::outImpressions()
 
     for (int i = 0; i < sites.size(); i++)
     {
-        // cout << sites[i]->getURL() << ","
-        // << sites[i]->getImpressions() << ","
-        // << sites[i]->getClicks() << ","
-        // << sites[i]->getCTR() << ","
-        // << sites[i]->getPR() << ","
-        // << sites[i]->getScore() << "," << endl;
         out << sites[i]->getURL() << ","
             << sites[i]->getImpressions() << ","
             << sites[i]->getClicks() << ","
@@ -146,6 +136,13 @@ void graph::calculatePR() // O(mn)
 
     vector<double> PRVec;
 
+    double MOE = 0.01; // margin of error
+
+    int j;
+
+    vector<bool> moe (numOfSites, false); // margin of error 
+    bool allmoe = false;
+
     for (int i = 0; i < numOfSites; i++) // iteration 0; n times
     {
         sites[i]->setPR(1.0 / numOfSites);
@@ -153,25 +150,42 @@ void graph::calculatePR() // O(mn)
         PRVec.push_back(sites[i]->getPR());
     }
 
-    for (int j = 1; j < 100; j++) // iterations 1, 2, and 3; 3 times
+    while(!allmoe && j < 100)
     {
+        double sinksSum = getSinks();
         for (int i = 0; i < numOfSites; i++) // n times
         {
+            sites[i]->setPR(sites[i]->getPR() + sinksSum);
+
             if (sites[i]->getInbound().size() != 0)
             {
                 double tempPR = 0;
 
                 for (int k = 0; k < sites[i]->getInbound().size(); k++) // m times
-                {
                     tempPR += sites[i]->getInbound()[k]->getPR() / sites[i]->getInbound()[k]->getHyperlinks().size();
-                }
-                PRVec[i] = tempPR;
+                
+                    tempPR = ((1 - 0.85) / numOfSites) + (0.85 * tempPR);
+                
+                 if(sites[i]->getImpressions().size() != 0)
+                    PRVec[i] = tempPR;
+                else
+                    PRVec[i] -= sites[i]->getPR() / numOfSites - 1;
+
             }
         }
+        allmoe = true;
         for (int i = 0; i < numOfSites; i++) // n times
         {
-            sites[i]->setPR(PRVec[i]);
+            if(sites[i]->getPR() - PRVec[i] > MOE)
+                sites[i]->setPR(PRVec[i]);
+            else
+                moe[i] = true;
+
+            if(!moe[i])
+                allmoe = false;
         }
+
+        ++j;
     }
 }
 
@@ -209,4 +223,22 @@ void graph::checkPRs()
         total += sites[i]->getPR();
 
     cout << "total PRs: " << total << endl;
+}
+
+double graph::getSinks()
+{
+    double sum = 0.0;
+
+    for(int i = 0; i < sites.size(); i++)
+    {
+        sites[i]->setSink();
+        if(sites[i]->getHyperlinks().size() == 0)
+        {
+            // sites[i]->setPR(sites[i]->getPR() / sites.size());
+
+            sum += sites[i]->getPR() / (sites.size() - 1);
+        }
+    }
+    
+    return sum;
 }

@@ -22,6 +22,8 @@ class webpage
     double PR;
     double ctr;
 
+    bool sink;
+
     public:
 
     webpage();
@@ -34,7 +36,8 @@ class webpage
     void setPR(double);
     void setCTR(double);
     void setScore(double);
-    void setHyperlinks(vector<webpage *>);
+    void setSink();
+    void pushHyperlink(webpage *);
     void pushInbound(webpage *);
     void print();
     void printAdvanced();
@@ -54,6 +57,8 @@ class webpage
     double getScore();
     double getCTR();
     double getPR();
+ 
+    bool getSink();
 };
 
 
