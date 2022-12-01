@@ -40,7 +40,7 @@ vector<webpage *> Search::ANDSearch(string input)
 
         transform(keys.begin(), keys.end(), keys.begin(), ::toupper);
 
-        for (int i = 0; i < KWs.size(); i++)
+        for (int i = 0; i < KWs.size() && Flag; i++)
         {
             if (keys.find(KWs[i]) == string::npos)
                 Flag = false;
@@ -95,7 +95,7 @@ vector<webpage *> Search::ORSearch(string input)
 
         transform(keys.begin(), keys.end(), keys.begin(), ::toupper);
 
-        for (int i = 0; i < KWs.size(); i++)
+        for (int i = 0; i < KWs.size() && !Flag; i++)
         {
             if (keys.find(KWs[i]) != string::npos)
                 Flag = true;
@@ -118,17 +118,13 @@ vector<webpage *> Search::QuoteSearch(string input)
 
     input.erase(remove(input.begin(), input.end(), '"'), input.end());
 
-    transform(input.begin(), input.end(), input.begin(), ::toupper);
-
     for (int i = 0; i < sites.size(); i++)
     {
         bool Flag(false);
 
-        for (int j = 0; j < sites[i]->getKeywords().size(); j++)
+        for (int j = 0; j < sites[i]->getKeywords().size() && !Flag; j++)
         {
             string key(sites[i]->getKeywords()[j]);
-
-            transform(key.begin(), key.end(), key.begin(), ::toupper);
 
             if (key == input)
                 Flag = true;

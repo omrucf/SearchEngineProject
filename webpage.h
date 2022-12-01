@@ -26,7 +26,6 @@ class webpage
 
 public:
     webpage();
-    // webpage(string, vector<string>, int, int);
 
     void setURL(string);
     void setKeywords(vector<string>);
