@@ -23,15 +23,24 @@ void screen::startingScreen()
 
     int i;
 
-    std::cout << "Welcome!" << endl;
+    std::cout << "\t\t\t\t\t\t\tWelcome!" << endl;
 
     do
     {
         if (choice != '1' && choice != '2')
         {
-            std::cout << "\nPlease choose from the following:" << endl
-                      << "1. New Search" << endl
-                      << "2. Exit" << endl;
+            std::cout << "\t\t  ======================================================================================" << endl
+                      << "\t\t||                                                                                      ||" << endl
+                      << "\t\t||                            Please choose from the following:                         ||" << endl
+                      << "\t\t||                                                                                      ||" << endl
+                      << "\t\t||                            1. New Search                                             ||" << endl
+                      << "\t\t||                            2. Exit                                                   ||" << endl
+                      << "\t\t||                                                                                      ||" << endl
+                      << "\t\t||                                                                                      ||" << endl
+                      << "\t\t  ======================================================================================" << endl
+                      << "\t\t||                            " << endl
+                      << "\t\t||                            " << endl
+                      << "\t\t||___________________________Type here: ";
 
             cin >> choice;
         }
@@ -40,13 +49,23 @@ void screen::startingScreen()
 
         if (choice != '1' && choice != '2' && choice != '0')
         {
-            std::cout << "*INVALID INPUT*\n";
+            std::cout << "\t\t  ======================================================================================" << endl
+                      << "\t\t||                                                                                      ||" << endl
+                      << "\t\t||                                                                                      ||" << endl
+                      << "\t\t||                                    INVALID INPUT                                     ||" << endl
+                      << "\t\t||                                                                                      ||" << endl
+                      << "\t\t||                                  Please try again!                                   ||" << endl
+                      << "\t\t||                                                                                      ||" << endl
+                      << "\t\t||                                                                                      ||" << endl
+                      << "\t\t  ======================================================================================" << endl;
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
         else if (choice == '1')
         {
-            std::cout << "\nSearch: ";
+            std::cout << "\t\t||                            " << endl
+                     << "\t\t||                            " << endl
+                     << "\t\t||___________________________Search: ";
 
             getline(cin >> ws, keywords);
 
@@ -81,23 +100,37 @@ void screen::startingScreen()
 
                 if (output.size() > 0)
                 {
-                    cout << "select any website you want by typing its number: " << endl;
+                    cout << "\t\t  ======================================================================================" << endl
+                         << "\t\t||                                                                                      ||" << endl
+                         << "\t\t||              select any website you want, make a new search, or exit:                ||" << endl
+                         << "\t\t||                                                                                      ||" << endl;
 
                     for (int j = 0; j < output.size(); j++)
                     {
                         output[j]->setImpressions(output[j]->getImpressions() + 1);
 
-                        cout << j + 1 << ". " << output[j]->getURL() << endl;
+                        cout << "\t\t||              " << j + 1 << ". " << output[j]->getURL() << endl;
 
                         output[j]->calculateScore();
                     }
                 }
                 else
-                    cout << "No results found!\n";
+                    cout << "\t\t  ======================================================================================" << endl
+                         << "\t\t||                                                                                      ||" << endl
+                         << "\t\t||                                                                                      ||" << endl
+                         << "\t\t||                                                                                      ||" << endl
+                         << "\t\t||                                  No results found!                                   ||" << endl
+                         << "\t\t||                                                                                      ||" << endl;
 
-                cout << "\n"
-                     << output.size() + 1 << ". New search\n"
-                     << output.size() + 2 << ". Exit" << endl;
+                cout << "\t\t||              " << output.size() + 1 << ". New search\n"
+                     << "\t\t||              " << output.size() + 2 << ". Exit" << endl;
+
+                cout << "\t\t||                                                                                      ||" << endl
+                     << "\t\t||                                                                                      ||" << endl
+                     << "\t\t  ======================================================================================" << endl
+                     << "\t\t||                            " << endl
+                     << "\t\t||                            " << endl
+                     << "\t\t||___________________________Type here: ";
 
                 cin >> i;
 

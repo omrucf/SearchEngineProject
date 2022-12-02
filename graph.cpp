@@ -57,12 +57,51 @@ void graph::readKeywords() // O(n)
     {
         vector<string> tempKeywords(0);
 
+
+        string tempkeyword;
+
         getline(inWK >> ws, temp);
 
         tempURL = getTillChar(temp, ',');
 
         while (!temp.empty())
-            tempKeywords.push_back(getTillChar(temp, ','));
+        {
+            pair<string, vector<webpage *>> tempKW;
+
+            map<string, vector<webpage *>>::iterator it;
+
+            tempkeyword = getTillChar(temp, ',');
+
+            tempKeywords.push_back(tempkeyword);
+
+            it = keywords.find(tempkeyword); // O(logn)
+
+            if(it != keywords.end())
+                it->second.push_back(sites[i]);
+            else
+            {
+                tempKW.first = tempkeyword;
+                tempKW.second.push_back(sites[i]);
+
+                keywords.insert(tempKW); // O(logn)
+            }
+
+            pair<string, vector<webpage *>> tempKWNC;
+
+            transform(tempkeyword.begin(), tempkeyword.end(), tempkeyword.begin(), ::toupper);
+
+            it = keywordsNoCase.find(tempkeyword); // O(logn)
+
+            if(it != keywordsNoCase.end())
+                it->second.push_back(sites[i]);
+            else
+            {
+                tempKWNC.first = tempkeyword;
+                tempKWNC.second.push_back(sites[i]);
+
+                keywordsNoCase.insert(tempKWNC); // O(logn)
+            }
+        }
 
         sites[i++]->setKeywords(tempKeywords);
     }

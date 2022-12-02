@@ -19,7 +19,7 @@ void clear()
 {
     system("clear");
 
-    cout << "============================Omar's Search Engine============================\n\n";
+    cout << "\t\t===================================Omar's Search Engine===================================\n\n";
 }
 
 string getTillChar(string &word, char c)
