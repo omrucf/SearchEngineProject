@@ -30,7 +30,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Welcome to Omar's Search Engine :)</string>
+    <string>Omar's Search Engine :)</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>

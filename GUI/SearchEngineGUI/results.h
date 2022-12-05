@@ -3,11 +3,14 @@
 
 #include <QWidget>
 #include <QKeyEvent>
+#include <QMetaType>
+#include <QVariant>
 #include <QListWidgetItem>
 
 #include "graph.h"
 #include "search.h"
 #include "screen.h"
+#include "websitescreen.h"
 
 namespace Ui {
 class results;

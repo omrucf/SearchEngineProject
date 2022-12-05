@@ -57,18 +57,22 @@ SOURCES       = ../SearchEngineGUI/graph.cpp \
 		../SearchEngineGUI/results.cpp \
 		../SearchEngineGUI/screen.cpp \
 		../SearchEngineGUI/search.cpp \
-		../SearchEngineGUI/webpage.cpp qrc_Resources.cpp \
+		../SearchEngineGUI/webpage.cpp \
+		../SearchEngineGUI/websitescreen.cpp qrc_Resources.cpp \
 		moc_results.cpp \
-		moc_screen.cpp
+		moc_screen.cpp \
+		moc_websitescreen.cpp
 OBJECTS       = graph.o \
 		main.o \
 		results.o \
 		screen.o \
 		search.o \
 		webpage.o \
+		websitescreen.o \
 		qrc_Resources.o \
 		moc_results.o \
-		moc_screen.o
+		moc_screen.o \
+		moc_websitescreen.o
 DIST          = /Users/omar/QT/6.2.4/macos/mkspecs/features/spec_pre.prf \
 		/Users/omar/QT/6.2.4/macos/mkspecs/features/device_config.prf \
 		/Users/omar/QT/6.2.4/macos/mkspecs/common/unix.conf \
@@ -218,12 +222,14 @@ DIST          = /Users/omar/QT/6.2.4/macos/mkspecs/features/spec_pre.prf \
 		../SearchEngineGUI/results.h \
 		../SearchEngineGUI/screen.h \
 		../SearchEngineGUI/search.h \
-		../SearchEngineGUI/webpage.h ../SearchEngineGUI/graph.cpp \
+		../SearchEngineGUI/webpage.h \
+		../SearchEngineGUI/websitescreen.h ../SearchEngineGUI/graph.cpp \
 		../SearchEngineGUI/main.cpp \
 		../SearchEngineGUI/results.cpp \
 		../SearchEngineGUI/screen.cpp \
 		../SearchEngineGUI/search.cpp \
-		../SearchEngineGUI/webpage.cpp
+		../SearchEngineGUI/webpage.cpp \
+		../SearchEngineGUI/websitescreen.cpp
 QMAKE_TARGET  = SearchEngineGUI
 DESTDIR       = 
 TARGET        = SearchEngineGUI.app/Contents/MacOS/SearchEngineGUI
@@ -244,7 +250,7 @@ include /Users/omar/QT/6.2.4/macos/mkspecs/features/mac/sdk.mk
 first: all
 ####### Build rules
 
-SearchEngineGUI.app/Contents/MacOS/SearchEngineGUI: ui_results.h ui_screen.h $(OBJECTS)  
+SearchEngineGUI.app/Contents/MacOS/SearchEngineGUI: ui_results.h ui_screen.h ui_websitescreen.h $(OBJECTS)  
 	@test -d SearchEngineGUI.app/Contents/MacOS/ || mkdir -p SearchEngineGUI.app/Contents/MacOS/
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
@@ -579,9 +585,9 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../SearchEngineGUI/Resources.qrc $(DISTDIR)/
-	$(COPY_FILE) --parents ../SearchEngineGUI/graph.h ../SearchEngineGUI/results.h ../SearchEngineGUI/screen.h ../SearchEngineGUI/search.h ../SearchEngineGUI/webpage.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../SearchEngineGUI/graph.cpp ../SearchEngineGUI/main.cpp ../SearchEngineGUI/results.cpp ../SearchEngineGUI/screen.cpp ../SearchEngineGUI/search.cpp ../SearchEngineGUI/webpage.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../SearchEngineGUI/results.ui ../SearchEngineGUI/screen.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../SearchEngineGUI/graph.h ../SearchEngineGUI/results.h ../SearchEngineGUI/screen.h ../SearchEngineGUI/search.h ../SearchEngineGUI/webpage.h ../SearchEngineGUI/websitescreen.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../SearchEngineGUI/graph.cpp ../SearchEngineGUI/main.cpp ../SearchEngineGUI/results.cpp ../SearchEngineGUI/screen.cpp ../SearchEngineGUI/search.cpp ../SearchEngineGUI/webpage.cpp ../SearchEngineGUI/websitescreen.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../SearchEngineGUI/results.ui ../SearchEngineGUI/screen.ui ../SearchEngineGUI/websitescreen.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -619,14 +625,28 @@ qrc_Resources.cpp: ../SearchEngineGUI/Resources.qrc \
 		../SearchEngineGUI/background.jpeg
 	/Users/omar/QT/6.2.4/macos/libexec/rcc -name Resources ../SearchEngineGUI/Resources.qrc -o qrc_Resources.cpp
 
-compiler_moc_header_make_all: moc_results.cpp moc_screen.cpp
+compiler_moc_header_make_all: moc_results.cpp moc_screen.cpp moc_websitescreen.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_results.cpp moc_screen.cpp
+	-$(DEL_FILE) moc_results.cpp moc_screen.cpp moc_websitescreen.cpp
 moc_results.cpp: ../SearchEngineGUI/results.h \
 		/Users/omar/QT/6.2.4/macos/lib/QtWidgets.framework/Headers/QWidget \
 		/Users/omar/QT/6.2.4/macos/lib/QtWidgets.framework/Headers/qwidget.h \
 		/Users/omar/QT/6.2.4/macos/lib/QtGui.framework/Headers/QKeyEvent \
 		/Users/omar/QT/6.2.4/macos/lib/QtGui.framework/Headers/qevent.h \
+		/Users/omar/QT/6.2.4/macos/lib/QtCore.framework/Headers/QMetaType \
+		/Users/omar/QT/6.2.4/macos/lib/QtCore.framework/Headers/qmetatype.h \
+		/Users/omar/QT/6.2.4/macos/lib/QtCore.framework/Headers/QVariant \
+		/Users/omar/QT/6.2.4/macos/lib/QtCore.framework/Headers/qvariant.h \
+		/Users/omar/QT/6.2.4/macos/lib/QtWidgets.framework/Headers/QListWidgetItem \
+		/Users/omar/QT/6.2.4/macos/lib/QtWidgets.framework/Headers/qlistwidget.h \
+		../SearchEngineGUI/graph.h \
+		../SearchEngineGUI/webpage.h \
+		../SearchEngineGUI/search.h \
+		../SearchEngineGUI/screen.h \
+		/Users/omar/QT/6.2.4/macos/lib/QtWidgets.framework/Headers/QMainWindow \
+		/Users/omar/QT/6.2.4/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../SearchEngineGUI/websitescreen.h \
+		../SearchEngineGUI/results.h \
 		/Users/omar/QT/6.2.4/macos/libexec/moc
 	/Users/omar/QT/6.2.4/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=14 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/omar/QT/6.2.4/macos/mkspecs/macx-clang -I'/Users/omar/Desktop/AUC/Fall 22/ANLS/LAB/Search Engine Project /GUI/SearchEngineGUI' -I/Users/omar/QT/6.2.4/macos/lib/QtWidgets.framework/Headers -I/Users/omar/QT/6.2.4/macos/lib/QtGui.framework/Headers -I/Users/omar/QT/6.2.4/macos/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/omar/QT/6.2.4/macos/lib ../SearchEngineGUI/results.h -o moc_results.cpp
 
@@ -638,13 +658,35 @@ moc_screen.cpp: ../SearchEngineGUI/screen.h \
 		/Users/omar/QT/6.2.4/macos/libexec/moc
 	/Users/omar/QT/6.2.4/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=14 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/omar/QT/6.2.4/macos/mkspecs/macx-clang -I'/Users/omar/Desktop/AUC/Fall 22/ANLS/LAB/Search Engine Project /GUI/SearchEngineGUI' -I/Users/omar/QT/6.2.4/macos/lib/QtWidgets.framework/Headers -I/Users/omar/QT/6.2.4/macos/lib/QtGui.framework/Headers -I/Users/omar/QT/6.2.4/macos/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/omar/QT/6.2.4/macos/lib ../SearchEngineGUI/screen.h -o moc_screen.cpp
 
+moc_websitescreen.cpp: ../SearchEngineGUI/websitescreen.h \
+		/Users/omar/QT/6.2.4/macos/lib/QtWidgets.framework/Headers/QWidget \
+		/Users/omar/QT/6.2.4/macos/lib/QtWidgets.framework/Headers/qwidget.h \
+		../SearchEngineGUI/results.h \
+		/Users/omar/QT/6.2.4/macos/lib/QtGui.framework/Headers/QKeyEvent \
+		/Users/omar/QT/6.2.4/macos/lib/QtGui.framework/Headers/qevent.h \
+		/Users/omar/QT/6.2.4/macos/lib/QtCore.framework/Headers/QMetaType \
+		/Users/omar/QT/6.2.4/macos/lib/QtCore.framework/Headers/qmetatype.h \
+		/Users/omar/QT/6.2.4/macos/lib/QtCore.framework/Headers/QVariant \
+		/Users/omar/QT/6.2.4/macos/lib/QtCore.framework/Headers/qvariant.h \
+		/Users/omar/QT/6.2.4/macos/lib/QtWidgets.framework/Headers/QListWidgetItem \
+		/Users/omar/QT/6.2.4/macos/lib/QtWidgets.framework/Headers/qlistwidget.h \
+		../SearchEngineGUI/graph.h \
+		../SearchEngineGUI/webpage.h \
+		../SearchEngineGUI/search.h \
+		../SearchEngineGUI/screen.h \
+		/Users/omar/QT/6.2.4/macos/lib/QtWidgets.framework/Headers/QMainWindow \
+		/Users/omar/QT/6.2.4/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../SearchEngineGUI/websitescreen.h \
+		/Users/omar/QT/6.2.4/macos/libexec/moc
+	/Users/omar/QT/6.2.4/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=14 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/omar/QT/6.2.4/macos/mkspecs/macx-clang -I'/Users/omar/Desktop/AUC/Fall 22/ANLS/LAB/Search Engine Project /GUI/SearchEngineGUI' -I/Users/omar/QT/6.2.4/macos/lib/QtWidgets.framework/Headers -I/Users/omar/QT/6.2.4/macos/lib/QtGui.framework/Headers -I/Users/omar/QT/6.2.4/macos/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/Users/omar/QT/6.2.4/macos/lib ../SearchEngineGUI/websitescreen.h -o moc_websitescreen.cpp
+
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_results.h ui_screen.h
+compiler_uic_make_all: ui_results.h ui_screen.h ui_websitescreen.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_results.h ui_screen.h
+	-$(DEL_FILE) ui_results.h ui_screen.h ui_websitescreen.h
 ui_results.h: ../SearchEngineGUI/results.ui \
 		/Users/omar/QT/6.2.4/macos/libexec/uic
 	/Users/omar/QT/6.2.4/macos/libexec/uic ../SearchEngineGUI/results.ui -o ui_results.h
@@ -652,6 +694,10 @@ ui_results.h: ../SearchEngineGUI/results.ui \
 ui_screen.h: ../SearchEngineGUI/screen.ui \
 		/Users/omar/QT/6.2.4/macos/libexec/uic
 	/Users/omar/QT/6.2.4/macos/libexec/uic ../SearchEngineGUI/screen.ui -o ui_screen.h
+
+ui_websitescreen.h: ../SearchEngineGUI/websitescreen.ui \
+		/Users/omar/QT/6.2.4/macos/libexec/uic
+	/Users/omar/QT/6.2.4/macos/libexec/uic ../SearchEngineGUI/websitescreen.ui -o ui_websitescreen.h
 
 compiler_rez_source_make_all:
 compiler_rez_source_clean:
@@ -666,7 +712,13 @@ compiler_clean: compiler_rcc_clean compiler_moc_header_clean compiler_uic_clean
 ####### Compile
 
 graph.o: ../SearchEngineGUI/graph.cpp ../SearchEngineGUI/graph.h \
-		../SearchEngineGUI/webpage.h
+		../SearchEngineGUI/webpage.h \
+		/Users/omar/QT/6.2.4/macos/lib/QtCore.framework/Headers/QMetaType \
+		/Users/omar/QT/6.2.4/macos/lib/QtCore.framework/Headers/qmetatype.h \
+		/Users/omar/QT/6.2.4/macos/lib/QtCore.framework/Headers/QVariant \
+		/Users/omar/QT/6.2.4/macos/lib/QtCore.framework/Headers/qvariant.h \
+		/Users/omar/QT/6.2.4/macos/lib/QtCore.framework/Headers/QDebug \
+		/Users/omar/QT/6.2.4/macos/lib/QtCore.framework/Headers/qdebug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o graph.o ../SearchEngineGUI/graph.cpp
 
 main.o: ../SearchEngineGUI/main.cpp ../SearchEngineGUI/screen.h \
@@ -683,6 +735,19 @@ results.o: ../SearchEngineGUI/results.cpp ../SearchEngineGUI/results.h \
 		/Users/omar/QT/6.2.4/macos/lib/QtWidgets.framework/Headers/qwidget.h \
 		/Users/omar/QT/6.2.4/macos/lib/QtGui.framework/Headers/QKeyEvent \
 		/Users/omar/QT/6.2.4/macos/lib/QtGui.framework/Headers/qevent.h \
+		/Users/omar/QT/6.2.4/macos/lib/QtCore.framework/Headers/QMetaType \
+		/Users/omar/QT/6.2.4/macos/lib/QtCore.framework/Headers/qmetatype.h \
+		/Users/omar/QT/6.2.4/macos/lib/QtCore.framework/Headers/QVariant \
+		/Users/omar/QT/6.2.4/macos/lib/QtCore.framework/Headers/qvariant.h \
+		/Users/omar/QT/6.2.4/macos/lib/QtWidgets.framework/Headers/QListWidgetItem \
+		/Users/omar/QT/6.2.4/macos/lib/QtWidgets.framework/Headers/qlistwidget.h \
+		../SearchEngineGUI/graph.h \
+		../SearchEngineGUI/webpage.h \
+		../SearchEngineGUI/search.h \
+		../SearchEngineGUI/screen.h \
+		/Users/omar/QT/6.2.4/macos/lib/QtWidgets.framework/Headers/QMainWindow \
+		/Users/omar/QT/6.2.4/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../SearchEngineGUI/websitescreen.h \
 		ui_results.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o results.o ../SearchEngineGUI/results.cpp
 
@@ -694,15 +759,54 @@ screen.o: ../SearchEngineGUI/screen.cpp ../SearchEngineGUI/screen.h \
 		ui_screen.h \
 		../SearchEngineGUI/results.h \
 		/Users/omar/QT/6.2.4/macos/lib/QtWidgets.framework/Headers/QWidget \
-		/Users/omar/QT/6.2.4/macos/lib/QtWidgets.framework/Headers/qwidget.h
+		/Users/omar/QT/6.2.4/macos/lib/QtWidgets.framework/Headers/qwidget.h \
+		/Users/omar/QT/6.2.4/macos/lib/QtCore.framework/Headers/QMetaType \
+		/Users/omar/QT/6.2.4/macos/lib/QtCore.framework/Headers/qmetatype.h \
+		/Users/omar/QT/6.2.4/macos/lib/QtCore.framework/Headers/QVariant \
+		/Users/omar/QT/6.2.4/macos/lib/QtCore.framework/Headers/qvariant.h \
+		/Users/omar/QT/6.2.4/macos/lib/QtWidgets.framework/Headers/QListWidgetItem \
+		/Users/omar/QT/6.2.4/macos/lib/QtWidgets.framework/Headers/qlistwidget.h \
+		../SearchEngineGUI/graph.h \
+		../SearchEngineGUI/webpage.h \
+		../SearchEngineGUI/search.h \
+		../SearchEngineGUI/websitescreen.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o screen.o ../SearchEngineGUI/screen.cpp
 
 search.o: ../SearchEngineGUI/search.cpp ../SearchEngineGUI/search.h \
-		../SearchEngineGUI/webpage.h
+		../SearchEngineGUI/webpage.h \
+		/Users/omar/QT/6.2.4/macos/lib/QtCore.framework/Headers/QMetaType \
+		/Users/omar/QT/6.2.4/macos/lib/QtCore.framework/Headers/qmetatype.h \
+		/Users/omar/QT/6.2.4/macos/lib/QtCore.framework/Headers/QVariant \
+		/Users/omar/QT/6.2.4/macos/lib/QtCore.framework/Headers/qvariant.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o search.o ../SearchEngineGUI/search.cpp
 
-webpage.o: ../SearchEngineGUI/webpage.cpp ../SearchEngineGUI/webpage.h
+webpage.o: ../SearchEngineGUI/webpage.cpp ../SearchEngineGUI/webpage.h \
+		/Users/omar/QT/6.2.4/macos/lib/QtCore.framework/Headers/QMetaType \
+		/Users/omar/QT/6.2.4/macos/lib/QtCore.framework/Headers/qmetatype.h \
+		/Users/omar/QT/6.2.4/macos/lib/QtCore.framework/Headers/QVariant \
+		/Users/omar/QT/6.2.4/macos/lib/QtCore.framework/Headers/qvariant.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o webpage.o ../SearchEngineGUI/webpage.cpp
+
+websitescreen.o: ../SearchEngineGUI/websitescreen.cpp ../SearchEngineGUI/websitescreen.h \
+		/Users/omar/QT/6.2.4/macos/lib/QtWidgets.framework/Headers/QWidget \
+		/Users/omar/QT/6.2.4/macos/lib/QtWidgets.framework/Headers/qwidget.h \
+		../SearchEngineGUI/results.h \
+		/Users/omar/QT/6.2.4/macos/lib/QtGui.framework/Headers/QKeyEvent \
+		/Users/omar/QT/6.2.4/macos/lib/QtGui.framework/Headers/qevent.h \
+		/Users/omar/QT/6.2.4/macos/lib/QtCore.framework/Headers/QMetaType \
+		/Users/omar/QT/6.2.4/macos/lib/QtCore.framework/Headers/qmetatype.h \
+		/Users/omar/QT/6.2.4/macos/lib/QtCore.framework/Headers/QVariant \
+		/Users/omar/QT/6.2.4/macos/lib/QtCore.framework/Headers/qvariant.h \
+		/Users/omar/QT/6.2.4/macos/lib/QtWidgets.framework/Headers/QListWidgetItem \
+		/Users/omar/QT/6.2.4/macos/lib/QtWidgets.framework/Headers/qlistwidget.h \
+		../SearchEngineGUI/graph.h \
+		../SearchEngineGUI/webpage.h \
+		../SearchEngineGUI/search.h \
+		../SearchEngineGUI/screen.h \
+		/Users/omar/QT/6.2.4/macos/lib/QtWidgets.framework/Headers/QMainWindow \
+		/Users/omar/QT/6.2.4/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		ui_websitescreen.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o websitescreen.o ../SearchEngineGUI/websitescreen.cpp
 
 qrc_Resources.o: qrc_Resources.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_Resources.o qrc_Resources.cpp
@@ -712,6 +816,9 @@ moc_results.o: moc_results.cpp
 
 moc_screen.o: moc_screen.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_screen.o moc_screen.cpp
+
+moc_websitescreen.o: moc_websitescreen.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_websitescreen.o moc_websitescreen.cpp
 
 ####### Install
 

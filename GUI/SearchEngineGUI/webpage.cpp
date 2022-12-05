@@ -1,6 +1,9 @@
 #include "webpage.h"
 
-webpage::webpage() {}
+Q_DECLARE_METATYPE(webpage *);
+
+webpage::webpage()
+{}
 
 void webpage::setURL(string URL)
 {

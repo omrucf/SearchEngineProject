@@ -98,7 +98,7 @@ public:
     void retranslateUi(QWidget *results)
     {
         results->setWindowTitle(QCoreApplication::translate("results", "Form", nullptr));
-        label->setText(QCoreApplication::translate("results", "Welcome to Omar's Search Engine :)", nullptr));
+        label->setText(QCoreApplication::translate("results", "Omar's Search Engine :)", nullptr));
         Input->setText(QString());
         Background->setText(QString());
         exit->setText(QCoreApplication::translate("results", "Exit :(", nullptr));

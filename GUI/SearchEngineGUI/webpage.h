@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <vector>
+#include <QMetaType>
+#include <QVariant>
 
 using namespace std;
 

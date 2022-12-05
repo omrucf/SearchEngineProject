@@ -70,7 +70,7 @@ vector<webpage *> Search::ORSearch(string input)
 
         do
             temp = getTillChar(input, ' ');
-        while (temp == "AND");
+        while (temp == "OR");
 
         temp.erase(remove(temp.begin(), temp.end(), '"'), temp.end());
 
