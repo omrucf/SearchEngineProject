@@ -1,6 +1,3 @@
-#ifndef GRAPH_H
-#define GRAPH_H
-
 #include <fstream>
 #include <map>
 
@@ -30,5 +27,3 @@ public:
 
     vector<webpage *> getSites();
 };
-
-#endif

@@ -1,4 +1,5 @@
-#include "graph.h"
+ #include "graph.h"
+#include <QDebug>
 
 extern string getTillChar(string &, char);
 
@@ -18,7 +19,10 @@ void graph::readImpressions() // O(n)
 {
     ifstream inWIC;
 
-    inWIC.open("impressions.csv");
+    inWIC.open("/Users/omar/Desktop/AUC/Fall 22/ANLS/LAB/Search Engine Project /impressions.csv");
+
+    if(!inWIC.is_open())
+        qDebug() << "error 1244";
 
     string temp; // to store temp strings
 
@@ -47,7 +51,7 @@ void graph::readKeywords() // O(n)
 
     string temp; // to store temp strings
 
-    inWK.open("keywords.csv");
+    inWK.open("/Users/omar/Desktop/AUC/Fall 22/ANLS/LAB/Search Engine Project /keywords.csv");
 
     string tempURL;
 
@@ -115,7 +119,7 @@ void graph::readWebgraph() // O(n)
 
     string temp; // to store temp strings
 
-    inWH.open("webgraph.csv");
+    inWH.open("/Users/omar/Desktop/AUC/Fall 22/ANLS/LAB/Search Engine Project /webgraph.csv");
 
     string tempURL;
 
@@ -154,7 +158,7 @@ void graph::outImpressions()
 {
     ofstream out;
 
-    out.open("impressions.csv");
+    out.open("/Users/omar/Desktop/AUC/Fall 22/ANLS/LAB/Search Engine Project /impressions.csv");
 
     for (int i = 0; i < sites.size(); i++)
     {
