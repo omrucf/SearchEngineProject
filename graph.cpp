@@ -57,7 +57,6 @@ void graph::readKeywords() // O(n)
     {
         vector<string> tempKeywords(0);
 
-
         string tempkeyword;
 
         getline(inWK >> ws, temp);
@@ -66,41 +65,14 @@ void graph::readKeywords() // O(n)
 
         while (!temp.empty())
         {
-            pair<string, vector<webpage *>> tempKW;
-
-            map<string, vector<webpage *>>::iterator it;
 
             tempkeyword = getTillChar(temp, ',');
 
             tempKeywords.push_back(tempkeyword);
 
-            it = keywords.find(tempkeyword); // O(logn)
-
-            if(it != keywords.end())
-                it->second.push_back(sites[i]);
-            else
-            {
-                tempKW.first = tempkeyword;
-                tempKW.second.push_back(sites[i]);
-
-                keywords.insert(tempKW); // O(logn)
-            }
-
-            pair<string, vector<webpage *>> tempKWNC;
 
             transform(tempkeyword.begin(), tempkeyword.end(), tempkeyword.begin(), ::toupper);
 
-            it = keywordsNoCase.find(tempkeyword); // O(logn)
-
-            if(it != keywordsNoCase.end())
-                it->second.push_back(sites[i]);
-            else
-            {
-                tempKWNC.first = tempkeyword;
-                tempKWNC.second.push_back(sites[i]);
-
-                keywordsNoCase.insert(tempKWNC); // O(logn)
-            }
         }
 
         sites[i++]->setKeywords(tempKeywords);
@@ -177,7 +149,7 @@ void graph::calculatePR() // O(mn)
 
     double MOE = 0.000001; // margin of error
 
-    int j;
+    int j = 0;
 
     vector<bool> moe(numOfSites, false); // margin of error
     bool allmoe = false;
@@ -193,16 +165,15 @@ void graph::calculatePR() // O(mn)
     {
         for (int i = 0; i < numOfSites; i++) // n times
         {
-            {
-                double tempPR = 0.0;
 
-                for (int k = 0; k < sites[i]->getInbound().size(); k++) // m times
-                    tempPR += (sites[i]->getInbound()[k]->getPR() / sites[i]->getInbound()[k]->getHyperlinks().size());
+            double tempPR = 0.0;
 
-                tempPR = ((1 - 0.85) / numOfSites) + (0.85 * tempPR);
+            for (int k = 0; k < sites[i]->getInbound().size(); k++) // m times
+                tempPR += (sites[i]->getInbound()[k]->getPR() / sites[i]->getInbound()[k]->getHyperlinks().size());
 
-                PRVec[i] = tempPR;
-            }
+            tempPR = ((1 - 0.85) / numOfSites) + (0.85 * tempPR);
+
+            PRVec[i] = tempPR;
         }
         allmoe = true;
         for (int i = 0; i < numOfSites; i++) // n times

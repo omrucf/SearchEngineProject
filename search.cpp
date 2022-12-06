@@ -4,10 +4,10 @@ Search::Search() {}
 
 vector<webpage *> Search::ANDSearch(string input)
 {
-    string results(""), urls;
-    vector<string> URLs;
-    vector<string> KWs;
-    vector<webpage *> res;
+    string results(""), urls; //2n
+    vector<string> URLs; // nk
+    vector<string> KWs; // nk
+    vector<webpage *> res; // n
 
     while (!input.empty())
     {

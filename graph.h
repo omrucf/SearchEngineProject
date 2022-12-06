@@ -2,16 +2,12 @@
 #define GRAPH_H
 
 #include <fstream>
-#include <map>
 
 #include "webpage.h"
 
 class graph
 {
     vector<webpage *> sites;
-
-    map<string, vector<webpage *>> keywords;
-    map<string, vector<webpage *>> keywordsNoCase;
 
 public:
     graph();

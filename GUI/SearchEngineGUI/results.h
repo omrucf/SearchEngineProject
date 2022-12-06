@@ -6,6 +6,7 @@
 #include <QMetaType>
 #include <QVariant>
 #include <QListWidgetItem>
+#include <sstream>
 
 #include "graph.h"
 #include "search.h"

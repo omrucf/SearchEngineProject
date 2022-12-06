@@ -74,16 +74,24 @@ void results::search()
 
     for (int i = 0; i<output.size();i++)
     {
+        stringstream oss;
 
+        oss << output[i];
 
         output[i]->setImpressions(output[i]->getImpressions() + 1);
-        webpage* tempitem = output[i];
 
-        /*QListWidgetItem::ItemType*/;
 
-        QListWidgetItem* item = new QListWidgetItem(QString::fromStdString(tempitem->getURL()));
+        string temp = oss.str();
 
-        item->setData(QListWidgetItem::UserType,  QVariant::fromValue<webpage *>);
+        QString tempQS = QString::fromStdString(temp);
+
+        qDebug() << tempQS;
+
+
+        QListWidgetItem* item = new QListWidgetItem(QString::fromStdString(output[i]->getURL()));
+
+        item->setData(QListWidgetItem::UserType, tempQS);
+
         ui->resultslist->addItem(item);
     }
 }
@@ -115,9 +123,12 @@ void results::keyPressEvent(QKeyEvent *event)
 
 
 
-//void results::on_resultslist_itemDoubleClicked(QListWidgetItem *item)
-//{
-//    QString::from
-//    websiteScreen* WS = new websiteScreen(input, item->UserType);
-//}
+void results::on_resultslist_itemDoubleClicked(QListWidgetItem *item)
+{
+//    QString tempQS = item->UserType;
+//    string tempstring = QString::toStdString(tempQS);
+//    webpage *tempweb/* = */;
+
+//    websiteScreen* WS = new websiteScreen(input, tempweb);
+}
 
