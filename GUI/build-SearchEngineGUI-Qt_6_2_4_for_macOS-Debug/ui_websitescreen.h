@@ -24,6 +24,7 @@ public:
     QPushButton *exit;
     QLabel *label;
     QLabel *URL;
+    QPushButton *pushButton;
 
     void setupUi(QWidget *websiteScreen)
     {
@@ -32,7 +33,7 @@ public:
         websiteScreen->resize(983, 535);
         Background = new QLabel(websiteScreen);
         Background->setObjectName(QString::fromUtf8("Background"));
-        Background->setGeometry(QRect(0, -3, 983, 535));
+        Background->setGeometry(QRect(0, 0, 983, 535));
         exit = new QPushButton(websiteScreen);
         exit->setObjectName(QString::fromUtf8("exit"));
         exit->setGeometry(QRect(20, 450, 80, 24));
@@ -51,10 +52,13 @@ public:
         label->setAlignment(Qt::AlignCenter);
         URL = new QLabel(websiteScreen);
         URL->setObjectName(QString::fromUtf8("URL"));
-        URL->setGeometry(QRect(200, 200, 571, 71));
+        URL->setGeometry(QRect(190, 200, 571, 71));
         QFont font2;
         font2.setPointSize(25);
         URL->setFont(font2);
+        pushButton = new QPushButton(websiteScreen);
+        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+        pushButton->setGeometry(QRect(20, 20, 80, 24));
 
         retranslateUi(websiteScreen);
 
@@ -67,7 +71,8 @@ public:
         Background->setText(QString());
         exit->setText(QCoreApplication::translate("websiteScreen", "Exit :(", nullptr));
         label->setText(QCoreApplication::translate("websiteScreen", "Omar's Search Engine :)", nullptr));
-        URL->setText(QCoreApplication::translate("websiteScreen", "TextLabel", nullptr));
+        URL->setText(QCoreApplication::translate("websiteScreen", "No results found!", nullptr));
+        pushButton->setText(QCoreApplication::translate("websiteScreen", "<", nullptr));
     } // retranslateUi
 
 };

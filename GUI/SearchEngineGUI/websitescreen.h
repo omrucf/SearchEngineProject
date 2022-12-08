@@ -14,13 +14,18 @@ class websiteScreen : public QWidget
     Q_OBJECT
 
 public:
-    explicit websiteScreen(QString, webpage*, QWidget *parent = nullptr);
+    explicit websiteScreen(QString, QString, QWidget *parent = nullptr);
     ~websiteScreen();
+
+private slots:
+    void on_exit_clicked();
+
+    void on_pushButton_clicked();
 
 private:
     Ui::websiteScreen *ui;
     QString input;
-    webpage * site;
+    QString site;
 };
 
 #endif // WEBSITESCREEN_H

@@ -129,6 +129,9 @@ void results::on_resultslist_itemDoubleClicked(QListWidgetItem *item)
 //    string tempstring = QString::toStdString(tempQS);
 //    webpage *tempweb/* = */;
 
-//    websiteScreen* WS = new websiteScreen(input, tempweb);
+    this->close();
+    websiteScreen* WS = new websiteScreen(input, item->text());
+    WS->show();
+
 }
 
